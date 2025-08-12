@@ -1,11 +1,12 @@
-import { correctHTML } from './correct';
-import { wrongHTML } from './wrong';
+import { correctHTML } from "./correct";
+import { wrongHTML } from "./wrong";
+import { part1 } from "./part1functionholder";
 
-addStylesheet('./src/correct.css', 'correct');
+addStylesheet("./src/correct.css", "correct");
 
-const app = document.querySelector<HTMLDivElement>('#app')!;
+const app = document.querySelector<HTMLDivElement>("#app")!;
 app.insertAdjacentHTML(
-  'afterbegin',
+  "afterbegin",
   `<header>
     <p class="logo-text">Niklas smaskisrecept</p>
     <nav>
@@ -18,21 +19,21 @@ app.insertAdjacentHTML(
 );
 app.append(correctHTML);
 
-const correctLink = document.querySelector<HTMLSpanElement>('.correct-link')!;
-const wrongLink = document.querySelector<HTMLSpanElement>('.wrong-link')!;
+const correctLink = document.querySelector<HTMLSpanElement>(".correct-link")!;
+const wrongLink = document.querySelector<HTMLSpanElement>(".wrong-link")!;
 
-correctLink.addEventListener('click', () => {
-  removeStylesheet('wrong');
-  addStylesheet('./src/correct.css', 'correct');
+correctLink.addEventListener("click", () => {
+  removeStylesheet("wrong");
+  addStylesheet("./src/correct.css", "correct");
   app.replaceChild(correctHTML, wrongHTML);
 
   // Uncomment this function invocation below
-  // part1();
+  part1();
 });
 
-wrongLink.addEventListener('click', () => {
-  removeStylesheet('correct');
-  addStylesheet('./src/wrong.css', 'wrong');
+wrongLink.addEventListener("click", () => {
+  removeStylesheet("correct");
+  addStylesheet("./src/wrong.css", "wrong");
   app.replaceChild(wrongHTML, correctHTML);
 
   // Uncomment this function invocation below
@@ -42,8 +43,8 @@ wrongLink.addEventListener('click', () => {
 // ######### Hoisted functions below ##########
 
 function addStylesheet(href: string, id: string) {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
   link.href = href;
   if (id) link.id = id;
   document.head.appendChild(link);
@@ -51,7 +52,7 @@ function addStylesheet(href: string, id: string) {
 
 function removeStylesheet(id: string) {
   const existing = document.getElementById(id);
-  if (existing && existing.tagName === 'LINK') {
+  if (existing && existing.tagName === "LINK") {
     document.head.removeChild(existing);
   }
 }
